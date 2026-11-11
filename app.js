@@ -201,14 +201,18 @@ function renderOnlineRoom() {
   const uid = state.currentUser?.uid;
   root.innerHTML = `<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="page-wrap">
     <header class="topbar"><a class="brand" href="./" data-action="exit-room"><span class="brand-duck">🦆</span><span>NEM A PATO<span class="brand-dot">!</span></span></a><div class="topbar-tag"><span class="pulse-dot"></span> ONLINE COM CHAT</div></header>
-    <section class="game-layout">
+    <section class="game-layout online-room-layout">
       <div class="room-bar"><button class="back-button" data-action="exit-room">← &nbsp;Sair</button><div class="room-code-block"><span class="room-overline">CÓDIGO DA SALA</span><strong>${escapeHtml(state.roomCode)}</strong></div><button class="icon-button" data-action="copy-code" aria-label="Copiar código">▣</button><button class="share-button" data-action="share-room">↗ &nbsp;Convidar</button></div>
       <div class="connection-row"><span class="connection-status ${state.connected ? 'online' : ''}"><span></span>${state.connected ? 'Sincronizado em tempo real' : 'Reconectando…'}</span><span class="players-count">${players.length}/2 aparelhos</span></div>
-      ${renderPlayerScores(players, room.turnUid, room.roundLoserUid)}
-      ${renderQuestionCard(question, room, true)}
-      ${renderActionArea(room, true, uid, question)}
-      ${chatMarkup()}
-      <div class="room-footnote">🦆 &nbsp;Quem acumular mais patos perde. Se o palpite passar da resposta, o palpiteiro leva; se não passar, o desafiante leva.</div>
+      <div class="online-columns">
+        <div class="online-game-column">
+          ${renderPlayerScores(players, room.turnUid, room.roundLoserUid)}
+          ${renderQuestionCard(question, room, true)}
+          ${renderActionArea(room, true, uid, question)}
+          <div class="room-footnote">🦆 &nbsp;Quem acumular mais patos perde. Se o palpite passar da resposta, o palpiteiro leva; se não passar, o desafiante leva.</div>
+        </div>
+        ${chatMarkup()}
+      </div>
     </section>${toastMarkup()}${footerMarkup()}</div>`;
   const scroller = document.querySelector('#chat-messages');
   if (scroller) scroller.scrollTop = scroller.scrollHeight;

@@ -22,15 +22,16 @@ MODOS DE JOGO
 - O chat integrado também atualiza em tempo real e só é acessível aos participantes da sala.
 - Requer Firebase Authentication anônima habilitada e Firestore ativo.
 
-BANCO DE PERGUNTAS
-- questions.json contém perguntas originais, com respostas numéricas e explicações.
-- Foram removidas as categorias de matemática e conversão de medidas/tempo, que tornavam o jogo semelhante a um quiz ou exercício de cálculo.
-- Banco atual: 643 perguntas únicas. A expansão até 1.000 deve priorizar perguntas quantitativas interessantes, verificáveis e não calculáveis mentalmente; não preencher com perguntas artificiais só para atingir a contagem.
-- Algumas perguntas novas têm link de referência exibido depois da revelação.
+BANCO DE PERGUNTAS — CURADORIA NOVA
+- questions.json agora contém 67 perguntas selecionadas e reescritas para o formato de estimativa: números absurdos, curiosidades inesperadas, recordes, natureza, espaço, sociedade, história, esportes e cultura.
+- Cada pergunta tem resposta numérica, explicação contextualizada e link de fonte para conferência após a revelação.
+- O banco anterior de 643 perguntas foi preservado em questions-archive-643.json, mas NÃO é sorteado no jogo. Ele fica apenas como arquivo de segurança/consulta.
+- A meta de 1.000 perguntas continua, mas será alcançada por novas rodadas de curadoria e checagem, não com perguntas genéricas ou de matemática.
+- Enunciados são originais; fatos e números foram conferidos em fontes públicas. Recordes e estatísticas com data de referência indicam o ano na explicação.
 
 PUBLICAR / ATUALIZAR NO GITHUB E NETLIFY
 1. Extraia o ZIP.
-2. Substitua no seu repositório os arquivos pelos arquivos desta pasta: index.html, app.js, styles.css, firebase-config.js, questions.json e firestore.rules.
+2. Substitua no seu repositório os arquivos pelos arquivos desta pasta: index.html, app.js, styles.css, firebase-config.js, questions.json e firestore.rules. Mantenha também questions-archive-643.json no repositório se quiser guardar o banco antigo; ele não é carregado pela aplicação.
 3. Faça commit e push no GitHub. Se o Netlify estiver ligado ao repositório, ele publicará a atualização automaticamente.
 4. Também pode publicar a pasta diretamente em https://app.netlify.com/drop.
 
@@ -46,3 +47,10 @@ IMPORTANTE
 - As salas online antigas da versão anterior podem não ser compatíveis com o novo formato. Crie uma sala nova depois de atualizar.
 - A lista de perguntas é carregada no navegador; é um jogo casual, não um ambiente antifraude. Uma pessoa com conhecimento técnico pode inspecionar o JSON e descobrir respostas antes da revelação.
 - A regra de desafio implementada é: se o palpite desafiado for maior que a resposta, quem deu o palpite recebe um pato; se for menor ou igual, quem desafiou recebe o pato.
+
+
+MUDANÇAS DESTA ATUALIZAÇÃO
+- A sala online agora usa duas colunas em telas largas: jogo à esquerda e chat à direita.
+- Em telas estreitas/celulares, o layout volta a uma coluna para manter os controles e o chat legíveis.
+- O chat tem altura própria e rolagem interna, sem empurrar o tabuleiro para baixo em desktop.
+- O novo banco ativo tem 67 perguntas mais curiosas e links de referência.

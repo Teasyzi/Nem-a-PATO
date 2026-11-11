@@ -262,3 +262,48 @@ button:disabled { opacity: .55; cursor: not-allowed; }
   .guess-submit { width:100%; }
   .players-board { grid-template-columns:1fr; }
 }
+
+
+/* Sala online: jogo e chat lado a lado em telas largas. */
+.game-layout.online-room-layout {
+  width: min(1160px, 100%);
+}
+.online-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, .9fr);
+  gap: 22px;
+  align-items: start;
+}
+.online-game-column { min-width: 0; }
+.online-game-column .players-board { margin-top: 0; }
+.online-game-column .room-footnote { margin-top: 18px; }
+.online-room-layout .chat-panel {
+  width: 100%;
+  height: min(720px, calc(100vh - 175px));
+  min-height: 480px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 16px;
+}
+.online-room-layout .chat-messages {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  overscroll-behavior: contain;
+}
+@media (max-width: 900px) {
+  .game-layout.online-room-layout { width: min(700px, 100%); }
+  .online-columns { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .online-room-layout .chat-panel {
+    position: static;
+    height: 420px;
+    min-height: 420px;
+  }
+  .online-room-layout .chat-messages { height: auto; flex: 1; min-height: 0; }
+}
+@media (max-width: 760px) {
+  .online-room-layout .chat-panel { height: 380px; min-height: 380px; }
+  .online-room-layout .chat-messages { height: auto; flex: 1; min-height: 0; }
+}
