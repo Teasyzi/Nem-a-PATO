@@ -1,0 +1,26 @@
+NEM A PATO! — PROJETO WEB
+
+ESTRUTURA
+- index.html, styles.css, app.js, firebase-config.js e questions.json: arquivos do site.
+- firestore.rules: regras para publicar no Firestore.
+- Banco: 1.008 perguntas numericas.
+
+PUBLICAR NO NETLIFY DROP
+1. Extraia este ZIP.
+2. Acesse https://app.netlify.com/drop.
+3. Arraste a pasta extraida (a pasta que contem index.html) para o Netlify Drop.
+4. Abra a URL gerada nos dois aparelhos.
+5. No primeiro, crie uma sala e compartilhe o codigo/link.
+
+FIREBASE
+O projeto ja esta configurado com o Firebase Web App informado para nem-a-pato-fc6f1.
+No console Firebase, confirme:
+- Authentication: provedor Anonimo habilitado.
+- Firestore Database: banco criado.
+- Firestore > Rules: publique o conteudo do arquivo firestore.rules.
+- Authentication > Settings > Authorized domains: adicione o dominio .netlify.app gerado, caso o Firebase recuse o login.
+
+O site usa Firebase Authentication anonima e Cloud Firestore. Nao precisa instalar Node ou npm.
+
+OBSERVACAO
+A resposta e escondida pela interface ate o botao de revelar, mas o banco JSON e entregue ao navegador. Portanto, alguem com conhecimento tecnico pode inspecionar o arquivo e descobrir respostas antecipadamente. E adequado para uso casual, nao para competicao antifraude.
