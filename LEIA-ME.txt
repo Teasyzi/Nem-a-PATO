@@ -1,26 +1,48 @@
-NEM A PATO! — PROJETO WEB
+NEM A PATO! — VERSÃO DE ESTIMATIVA, BLEFE E DESAFIO
 
-ESTRUTURA
-- index.html, styles.css, app.js, firebase-config.js e questions.json: arquivos do site.
-- firestore.rules: regras para publicar no Firestore.
-- Banco: 1.008 perguntas numericas.
+O QUE MUDOU
+- O jogo não é mais um quiz de perguntas com contas ou respostas calculáveis.
+- Cada rodada traz uma pergunta quantitativa para estimar.
+- O primeiro jogador dá um número; o seguinte precisa aumentar o palpite ou desafiar com “NEM A PATO!”.
+- Ao desafiar, a resposta de referência é revelada e um pato é atribuído a quem perdeu o desafio.
+- O jogador que desafiou começa a próxima rodada.
+- A pontuação mostra quantos patos cada jogador acumulou. No jogo original, quem acumula mais cartas/patos é o perdedor.
 
-PUBLICAR NO NETLIFY DROP
-1. Extraia este ZIP.
-2. Acesse https://app.netlify.com/drop.
-3. Arraste a pasta extraida (a pasta que contem index.html) para o Netlify Drop.
-4. Abra a URL gerada nos dois aparelhos.
-5. No primeiro, crie uma sala e compartilhe o codigo/link.
+MODOS DE JOGO
+1) PRESENCIAL — SEM CHAT
+- Um único aparelho compartilhado pelo grupo.
+- Informe de 2 a 10 nomes, separados por vírgulas ou linhas.
+- Não precisa de Firebase nem internet.
+- O jogo passa o aparelho para o jogador da vez.
+
+2) ONLINE — COM CHAT
+- Dois aparelhos, cada um com um jogador.
+- O primeiro cria uma sala e envia o código de 6 caracteres ou o link ao segundo.
+- Pergunta, palpites, desafios, revelação e pontuação sincronizam em tempo real.
+- O chat integrado também atualiza em tempo real e só é acessível aos participantes da sala.
+- Requer Firebase Authentication anônima habilitada e Firestore ativo.
+
+BANCO DE PERGUNTAS
+- questions.json contém perguntas originais, com respostas numéricas e explicações.
+- Foram removidas as categorias de matemática e conversão de medidas/tempo, que tornavam o jogo semelhante a um quiz ou exercício de cálculo.
+- Banco atual: 643 perguntas únicas. A expansão até 1.000 deve priorizar perguntas quantitativas interessantes, verificáveis e não calculáveis mentalmente; não preencher com perguntas artificiais só para atingir a contagem.
+- Algumas perguntas novas têm link de referência exibido depois da revelação.
+
+PUBLICAR / ATUALIZAR NO GITHUB E NETLIFY
+1. Extraia o ZIP.
+2. Substitua no seu repositório os arquivos pelos arquivos desta pasta: index.html, app.js, styles.css, firebase-config.js, questions.json e firestore.rules.
+3. Faça commit e push no GitHub. Se o Netlify estiver ligado ao repositório, ele publicará a atualização automaticamente.
+4. Também pode publicar a pasta diretamente em https://app.netlify.com/drop.
 
 FIREBASE
-O projeto ja esta configurado com o Firebase Web App informado para nem-a-pato-fc6f1.
-No console Firebase, confirme:
-- Authentication: provedor Anonimo habilitado.
+Projeto Web já configurado: nem-a-pato-fc6f1.
+No Firebase Console, confirme:
+- Authentication > Sign-in method: provedor Anonymous habilitado.
 - Firestore Database: banco criado.
-- Firestore > Rules: publique o conteudo do arquivo firestore.rules.
-- Authentication > Settings > Authorized domains: adicione o dominio .netlify.app gerado, caso o Firebase recuse o login.
+- Firestore > Rules: substitua as regras pelas contidas em firestore.rules e clique em Publicar.
+- Authentication > Settings > Authorized domains: inclua o domínio do Netlify, se necessário.
 
-O site usa Firebase Authentication anonima e Cloud Firestore. Nao precisa instalar Node ou npm.
-
-OBSERVACAO
-A resposta e escondida pela interface ate o botao de revelar, mas o banco JSON e entregue ao navegador. Portanto, alguem com conhecimento tecnico pode inspecionar o arquivo e descobrir respostas antecipadamente. E adequado para uso casual, nao para competicao antifraude.
+IMPORTANTE
+- As salas online antigas da versão anterior podem não ser compatíveis com o novo formato. Crie uma sala nova depois de atualizar.
+- A lista de perguntas é carregada no navegador; é um jogo casual, não um ambiente antifraude. Uma pessoa com conhecimento técnico pode inspecionar o JSON e descobrir respostas antes da revelação.
+- A regra de desafio implementada é: se o palpite desafiado for maior que a resposta, quem deu o palpite recebe um pato; se for menor ou igual, quem desafiou recebe o pato.
